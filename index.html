@@ -3,456 +3,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#08243f">
 <title>Bujji | Animal Digital ID</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+:root{
+  --navy:#08243f;
+  --navy2:#123d64;
+  --blue:#1d527f;
+  --gold:#c99a2e;
+  --gold2:#f0c75e;
+  --ink:#172b3d;
+  --muted:#6d7c89;
+  --paper:#ffffff;
+  --bg:#e9f0f5;
+  --line:#d8e1e8;
+  --green:#16794b;
+  --green-bg:#eaf7ef;
+}
 
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #eef4f8;
-        color: #17324d;
-    }
+*{box-sizing:border-box}
 
-    .card {
-        max-width: 760px;
-        margin: 30px auto;
-        background: white;
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%,rgba(29,82,127,.10),transparent 28%),
+    radial-gradient(circle at 90% 85%,rgba(201,154,46,.09),transparent 25%),
+    var(--bg);
+}
 
-    .header {
-        background: #0b2947;
-        color: white;
-        padding: 22px 26px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.page{
+  max-width:820px;
+  margin:28px auto;
+  padding:0 14px 30px;
+}
 
-    .header h1 {
-        margin: 0;
-        font-size: 25px;
-    }
+.card{
+  background:var(--paper);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 18px 55px rgba(8,36,63,.16);
+  border:1px solid rgba(8,36,63,.10);
+}
 
-    .header p {
-        margin: 5px 0 0;
-        font-size: 13px;
-        color: #d9e9f7;
-    }
+.header{
+  position:relative;
+  color:#fff;
+  padding:25px 28px 23px;
+  background:
+    linear-gradient(135deg,var(--navy),var(--navy2));
+  overflow:hidden;
+}
 
-    .animal-id {
-        border: 1px solid #e4b94f;
-        color: #ffd36a;
-        padding: 9px 13px;
-        border-radius: 9px;
-        font-weight: bold;
-        font-size: 14px;
-    }
+.header:after{
+  content:"";
+  position:absolute;
+  width:230px;height:230px;
+  right:-95px;top:-135px;
+  border:1px solid rgba(240,199,94,.28);
+  border-radius:50%;
+  box-shadow:0 0 0 18px rgba(240,199,94,.04),0 0 0 38px rgba(240,199,94,.03);
+}
 
-    .content {
-        padding: 25px;
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .profile {
-        display: grid;
-        grid-template-columns: 230px 1fr;
-        gap: 20px;
-        align-items: start;
-    }
+.logo{
+  width:44px;height:44px;
+  border:1px solid rgba(240,199,94,.65);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  background:rgba(255,255,255,.06);
+}
 
-    .photo-container {
-        text-align: center;
-    }
+.header h1{
+  margin:0;
+  font-size:24px;
+  letter-spacing:.7px;
+}
 
-    .photo {
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        border-radius: 15px;
-        border: 4px solid #e3ebf1;
-    }
+.header p{
+  margin:5px 0 0;
+  color:#cbdcea;
+  font-size:12px;
+}
 
-    .caption {
-        font-size: 12px;
-        color: #777;
-        margin-top: 7px;
-    }
+.id-panel{
+  position:relative;
+  z-index:1;
+  margin-top:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 16px;
+  border:1px solid rgba(240,199,94,.65);
+  background:rgba(0,0,0,.13);
+  border-radius:13px;
+}
 
-    .details {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
+.id-label{
+  color:#cbdcea;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:700;
+}
 
-    .detail {
-        background: #f5f8fa;
-        padding: 12px;
-        border-radius: 9px;
-    }
+.id-number{
+  color:var(--gold2);
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  margin-top:3px;
+}
 
-    .label {
-        display: block;
-        font-size: 11px;
-        color: #6b7b88;
-        margin-bottom: 4px;
-    }
+.status{
+  background:#e9f8ef;
+  color:#126a41;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
 
-    .value {
-        font-size: 14px;
-        font-weight: bold;
-        color: #17324d;
-    }
+.content{padding:26px}
 
-    .section {
-        margin-top: 25px;
-    }
+.notice{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding:11px 13px;
+  border:1px solid #ead8a6;
+  background:#fff9e9;
+  color:#725817;
+  border-radius:11px;
+  font-size:11px;
+  line-height:1.45;
+  margin-bottom:22px;
+}
 
-    .section-title {
-        background: #1b4772;
-        color: white;
-        padding: 11px 15px;
-        border-radius: 9px;
-        font-size: 16px;
-        font-weight: bold;
-    }
+.profile{
+  display:grid;
+  grid-template-columns:245px 1fr;
+  gap:22px;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-        font-size: 13px;
-    }
+.photo-wrap{
+  text-align:center;
+}
 
-    th {
-        background: #edf3f7;
-        text-align: left;
-        padding: 11px 9px;
-        border: 1px solid #d8e0e6;
-    }
+.photo-frame{
+  position:relative;
+  padding:7px;
+  background:#f3f6f8;
+  border:1px solid var(--line);
+  border-radius:18px;
+}
 
-    td {
-        padding: 10px 9px;
-        border: 1px solid #d8e0e6;
-    }
+.photo{
+  display:block;
+  width:100%;
+  height:285px;
+  object-fit:cover;
+  border-radius:13px;
+}
 
-    .current {
-        background: #eef9f1;
-        font-weight: bold;
-    }
+.registered{
+  position:absolute;
+  left:18px;
+  bottom:17px;
+  background:rgba(22,121,75,.95);
+  color:#fff;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:800;
+  box-shadow:0 4px 10px rgba(0,0,0,.16);
+}
 
-    .location {
-        margin-top: 10px;
-        padding: 15px;
-        background: #eef8f1;
-        border-radius: 10px;
-    }
+.caption{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:10px;
+}
 
-    .location-name {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+.details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
 
-    .button {
-        display: inline-block;
-        background: #16824b;
-        color: white;
-        text-decoration: none;
-        padding: 10px 16px;
-        border-radius: 7px;
-        font-size: 13px;
-        font-weight: bold;
-    }
+.detail{
+  min-height:67px;
+  padding:12px 13px;
+  background:#f7f9fb;
+  border:1px solid #e3e9ee;
+  border-radius:11px;
+}
 
-    .button:hover {
-        opacity: 0.9;
-    }
+.label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:5px;
+  text-transform:uppercase;
+  letter-spacing:.55px;
+}
 
-    .owner-box {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 10px;
-    }
+.value{
+  color:var(--ink);
+  font-size:14px;
+  font-weight:750;
+}
 
-    .contact {
-        background: #f5f8fa;
-        padding: 14px;
-        border-radius: 9px;
-    }
+.section{margin-top:25px}
 
-    .contact a {
-        color: #145d91;
-        font-weight: bold;
-        text-decoration: none;
-    }
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#fff;
+  padding:12px 15px;
+  border-radius:10px;
+  background:linear-gradient(90deg,var(--navy2),#1b4d78);
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.15px;
+}
 
-    .footer {
-        text-align: center;
-        padding: 18px;
-        background: #f5f7f9;
-        color: #71808c;
-        font-size: 12px;
-    }
+.table-wrap{
+  overflow-x:auto;
+  margin-top:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+}
 
-    .verified {
-        display: inline-block;
-        margin-top: 8px;
-        padding: 5px 10px;
-        background: #e6f6ec;
-        color: #16713f;
-        border-radius: 20px;
-        font-weight: bold;
-    }
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
 
-    @media (max-width: 600px) {
+th{
+  background:#eef3f7;
+  color:#4d6272;
+  text-align:left;
+  padding:11px 10px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.45px;
+}
 
-        .card {
-            margin: 0;
-            border-radius: 0;
-        }
+td{
+  padding:11px 10px;
+  border-top:1px solid var(--line);
+}
 
-        .header {
-            padding: 18px;
-        }
+.latest{
+  background:#f0faf4;
+}
 
-        .header h1 {
-            font-size: 20px;
-        }
+.vaccine-status{
+  display:inline-block;
+  padding:4px 7px;
+  border-radius:12px;
+  background:#e7f7ed;
+  color:#167246;
+  font-size:9px;
+  font-weight:800;
+}
 
-        .animal-id {
-            font-size: 11px;
-        }
+.location-box{
+  margin-top:10px;
+  padding:15px;
+  border:1px solid #d8eadf;
+  background:#f0faf4;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
 
-        .content {
-            padding: 16px;
-        }
+.location-name{
+  font-weight:800;
+  font-size:13px;
+}
 
-        .profile {
-            grid-template-columns: 1fr;
-        }
+.location-sub{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+}
 
-        .photo {
-            height: 320px;
-        }
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  background:var(--green);
+  color:#fff;
+  text-decoration:none;
+  padding:10px 13px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
 
-        .details,
-        .owner-box {
-            grid-template-columns: 1fr 1fr;
-        }
+.owner-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
 
-        table {
-            font-size: 11px;
-        }
+.contact{
+  padding:14px;
+  background:#f7f9fb;
+  border:1px solid #e3e9ee;
+  border-radius:11px;
+}
 
-        th,
-        td {
-            padding: 8px 5px;
-        }
-    }
+.contact a{
+  color:#145d91;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.verification{
+  margin-top:25px;
+  padding:16px;
+  border:1px solid #dce5ec;
+  border-radius:12px;
+  background:#fbfcfd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.verify-title{
+  font-weight:800;
+  font-size:13px;
+}
+
+.verify-text{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.4;
+}
+
+.mini-id{
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:11px;
+  font-weight:800;
+  color:var(--navy);
+  background:#eef3f7;
+  padding:8px 10px;
+  border-radius:7px;
+  white-space:nowrap;
+}
+
+.footer{
+  text-align:center;
+  padding:18px 20px;
+  background:#f5f7f9;
+  color:#71808c;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.footer strong{color:#405565}
+
+@media(max-width:650px){
+  .page{margin:0 auto;padding:0}
+  .card{border-radius:0}
+  .header{padding:20px 18px}
+  .header h1{font-size:20px}
+  .content{padding:17px}
+  .profile{grid-template-columns:1fr}
+  .photo{height:330px}
+  .id-number{font-size:17px}
+  .location-box,.verification{align-items:flex-start;flex-direction:column}
+  .button{width:100%}
+}
+
+@media print{
+  body{background:#fff}
+  .page{margin:0;padding:0}
+  .card{box-shadow:none;border:1px solid #ccc}
+}
 </style>
 </head>
 
 <body>
-
+<div class="page">
 <div class="card">
 
-    <div class="header">
-        <div>
-            <h1>🐾 ANIMAL DIGITAL ID</h1>
-            <p>Digital identity for a healthy & happy life</p>
-        </div>
+<header class="header">
+  <div class="brand">
+    <div class="logo">🐾</div>
+    <div>
+      <h1>ANIMAL DIGITAL ID</h1>
+      <p>Digital identity record for a healthy & happy life</p>
+    </div>
+  </div>
 
-        <div class="animal-id">
-            ANM-16503
-        </div>
+  <div class="id-panel">
+    <div>
+      <div class="id-label">Animal Identification Number</div>
+      <div class="id-number">ANM-KA-2024-0016503</div>
+    </div>
+    <div class="status">✓ REGISTERED</div>
+  </div>
+</header>
+
+<main class="content">
+
+  <div class="notice">
+    <span>🛡️</span>
+    <span><strong>Private Animal Digital ID:</strong> This record is privately maintained by the owner and is not a government-issued identity document.</span>
+  </div>
+
+  <section class="profile">
+    <div class="photo-wrap">
+      <div class="photo-frame">
+        <img src="bujji.jpg" alt="Bujji's photograph" class="photo">
+        <div class="registered">✓ ACTIVE RECORD</div>
+      </div>
+      <div class="caption">Registered photograph • Bujji</div>
     </div>
 
-    <div class="content">
-
-        <!-- PROFILE -->
-        <div class="profile">
-
-            <div class="photo-container">
-                <img src="bujji.jpg"
-                     alt="Bujji's photograph"
-                     class="photo">
-
-                <div class="caption">
-                    Bujji's photograph
-                </div>
-
-                <div class="verified">
-                    ✓ Registered
-                </div>
-            </div>
-
-            <div class="details">
-
-                <div class="detail">
-                    <span class="label">Animal Name</span>
-                    <span class="value">Bujji</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Animal ID</span>
-                    <span class="value">ANM-16503</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Type</span>
-                    <span class="value">Dog</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Breed</span>
-                    <span class="value">Unknown Mix</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Gender</span>
-                    <span class="value">Male</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Date of Birth</span>
-                    <span class="value">07-Jul-2024</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Owner</span>
-                    <span class="value">Sagar J</span>
-                </div>
-
-                <div class="detail">
-                    <span class="label">Identification No.</span>
-                    <span class="value">ANM-16503</span>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- VACCINATION -->
-        <div class="section">
-
-            <div class="section-title">
-                💉 Vaccination Records
-            </div>
-
-            <table>
-
-                <tr>
-                    <th>Vaccine / Record</th>
-                    <th>Date</th>
-                    <th>Next Due</th>
-                </tr>
-
-                <tr>
-                    <td>Puppy Vaccination</td>
-                    <td>31-Aug-2024</td>
-                    <td>21-Sep-2024</td>
-                </tr>
-
-                <tr>
-                    <td>Nobivac LEPTO</td>
-                    <td>21-Sep-2024</td>
-                    <td>12-Oct-2024</td>
-                </tr>
-
-                <tr>
-                    <td>Nobivac DHPPi</td>
-                    <td>21-Sep-2024</td>
-                    <td>12-Oct-2024</td>
-                </tr>
-
-                <tr>
-                    <td>Nobivac Rabies</td>
-                    <td>21-Sep-2024</td>
-                    <td>12-Oct-2024</td>
-                </tr>
-
-                <tr>
-                    <td>Nobivac Rabies</td>
-                    <td>14-Oct-2024</td>
-                    <td>14-Oct-2025</td>
-                </tr>
-
-                <tr class="current">
-                    <td>⭐ Starvac-R</td>
-                    <td>18-Oct-2025</td>
-                    <td>18-Oct-2026</td>
-                </tr>
-
-            </table>
-
-        </div>
-
-
-        <!-- LOCATION -->
-        <div class="section">
-
-            <div class="section-title">
-                📍 Registered Location
-            </div>
-
-            <div class="location">
-
-                <div class="location-name">
-                    Bengaluru, Karnataka, India
-                </div>
-
-                <a class="button"
-                   href="https://maps.app.goo.gl/n7Xez5tAjJ4sSDBZ9"
-                   target="_blank">
-                    📍 View Location
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- OWNER -->
-        <div class="section">
-
-            <div class="section-title">
-                📞 Owner & Emergency Information
-            </div>
-
-            <div class="owner-box">
-
-                <div class="contact">
-                    <span class="label">Owner</span>
-                    <strong>Sagar J</strong>
-                </div>
-
-                <div class="contact">
-                    <span class="label">Phone</span>
-                    <a href="tel:8095771899">
-                        8095771899
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="details">
+      <div class="detail"><span class="label">Animal Name</span><span class="value">Bujji</span></div>
+      <div class="detail"><span class="label">Animal ID</span><span class="value">ANM-KA-2024-0016503</span></div>
+      <div class="detail"><span class="label">Type</span><span class="value">Dog</span></div>
+      <div class="detail"><span class="label">Breed</span><span class="value">Unknown Mix</span></div>
+      <div class="detail"><span class="label">Gender</span><span class="value">Male</span></div>
+      <div class="detail"><span class="label">Date of Birth</span><span class="value">07-Jul-2024</span></div>
+      <div class="detail"><span class="label">Owner</span><span class="value">Sagar J</span></div>
+      <div class="detail"><span class="label">Record Status</span><span class="value">Active / Registered</span></div>
     </div>
+  </section>
 
-    <div class="footer">
-        Animal Digital ID • ANM-16503
-        <br>
-        Please contact the owner if Bujji is found.
+  <section class="section">
+    <div class="section-title">💉 Vaccination Records</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Vaccine / Record</th><th>Date</th><th>Next Due</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Puppy Vaccination</td><td>31-Aug-2024</td><td>21-Sep-2024</td><td><span class="vaccine-status">RECORDED</span></td></tr>
+          <tr><td>Nobivac LEPTO</td><td>21-Sep-2024</td><td>12-Oct-2024</td><td><span class="vaccine-status">RECORDED</span></td></tr>
+          <tr><td>Nobivac DHPPi</td><td>21-Sep-2024</td><td>12-Oct-2024</td><td><span class="vaccine-status">RECORDED</span></td></tr>
+          <tr><td>Nobivac Rabies</td><td>21-Sep-2024</td><td>12-Oct-2024</td><td><span class="vaccine-status">RECORDED</span></td></tr>
+          <tr><td>Nobivac Rabies</td><td>14-Oct-2024</td><td>14-Oct-2025</td><td><span class="vaccine-status">RECORDED</span></td></tr>
+          <tr class="latest"><td><strong>⭐ Starvac-R</strong></td><td><strong>18-Oct-2025</strong></td><td><strong>18-Oct-2026</strong></td><td><span class="vaccine-status">LATEST</span></td></tr>
+        </tbody>
+      </table>
     </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">📍 Registered Location</div>
+    <div class="location-box">
+      <div>
+        <div class="location-name">Bengaluru, Karnataka, India</div>
+        <div class="location-sub">Registered location for Bujji</div>
+      </div>
+      <a class="button" href="https://maps.app.goo.gl/n7Xez5tAjJ4sSDBZ9" target="_blank" rel="noopener">📍 View Location</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">📞 Owner & Emergency Information</div>
+    <div class="owner-grid">
+      <div class="contact"><span class="label">Owner</span><strong>Sagar J</strong></div>
+      <div class="contact"><span class="label">Phone</span><a href="tel:8095771899">8095771899</a></div>
+    </div>
+  </section>
+
+  <section class="verification">
+    <div>
+      <div class="verify-title">🔎 Digital ID Verification</div>
+      <div class="verify-text">Scan the QR code printed on Bujji's physical ID tag/card to open this live profile.</div>
+    </div>
+    <div class="mini-id">ANM-KA-2024-0016503</div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <strong>ANIMAL DIGITAL ID</strong> • ANM-KA-2024-0016503<br>
+  Please contact the owner if Bujji is found.<br>
+  Private owner-maintained record • Not a government-issued identity document
+</footer>
 
 </div>
-
+</div>
 </body>
 </html>
